@@ -279,6 +279,8 @@ class Solution:
             return s
         dp = [[False for _ in range(size)] for _ in range(size)]
         max_len = 1
+        # max_len = 0
+        """默认最大长度为1，因为一个字符就是回文串"""
         start = 0
         for i in range(size):
             dp[i][i] = True
@@ -317,10 +319,11 @@ class Solution:
                     if cur_len > max_len:
                         max_len = cur_len
                         start = i
-                    max_len = max(max_len, cur_len)
-                    start = i
-                    print(start,max_len, i, j, s[start:start + max_len], "dp[",i,"][",j,"]=",dp[i][j])
-        print(s[start:start + max_len])
+                    # max_len = max(max_len, cur_len)
+                    # start = i
+                    """不需要每次都对start赋值，而是仅当回文子串长度最长时"""
+                    print(start, max_len, cur_len, i, j, s[start:start + max_len], "dp[", i, "][", j, "]=", dp[i][j])
+        print("s[", start, ':', start+max_len, ']', s[start:start + max_len])
         return s[start:start + max_len]
 
     def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
@@ -433,8 +436,9 @@ if __name__ == "__main__":
     # node3.next = node4
     # node4.next = node5
     # s.reverseKGroup(node1, 2)
-    nums = [1,3,6,7,9,4,10,5,6]
-    so.lengthOfLIS(nums)
+    # nums = [1,3,6,7,9,4,10,5,6]
+    # so.lengthOfLIS(nums)
+    so.longestPalindrome("ccc")
 
 
 
